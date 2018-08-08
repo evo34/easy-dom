@@ -1,0 +1,33 @@
+{
+  "name": "easy-dom",
+  "version": "1.0.0",
+  "description": "常用工具方法",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build index.js"
+  },
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-eslint": "^8.2.1",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-transform-runtime": "^6.22.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evo34/easy-dom.git"
+  },
+  "keywords": [
+    "easy-dom",
+    "juqery"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/evo34/easy-dom/issues"
+  },
+  "homepage": "https://github.com/evo34/easy-dom#readme"
+}
