@@ -144,8 +144,9 @@ function contains (root, el) {
  * @returns {*}
  */
 function getScrollParent (element) {
+  let root = window
   function getStyleComputedProperty (element, property) {
-    let css = window.getComputedStyle(element, null)
+    let css = root.getComputedStyle(element, null)
     return css[property]
   }
 
@@ -155,23 +156,17 @@ function getScrollParent (element) {
     return element
   }
 
-  if (parent === window.document) {
-    // Firefox puts the scrollTOp value on `documentElement` instead of `body`, we then check which of them is
-    // greater than 0 and return the proper element
-    if (window.document.body.scrollTop || root.document.body.scrollLeft) {
-      return window.document.body
+  if (parent === root.document) {
+    if (root.document.body.scrollTop || root.document.body.scrollLeft) {
+      return root.document.body
     } else {
-      return window.document.documentElement
+      return root.document.documentElement
     }
   }
 
-  // Firefox want us to check `-x` and `-y` variations as well
   if ([ 'scroll', 'auto' ].indexOf(getStyleComputedProperty(parent, 'overflow')) !== -1 ||
     [ 'scroll', 'auto' ].indexOf(getStyleComputedProperty(parent, 'overflow-x')) !== -1 ||
     [ 'scroll', 'auto' ].indexOf(getStyleComputedProperty(parent, 'overflow-y')) !== -1) {
-    // If the detected scrollParent is body, we perform an additional check on its parentNode
-    // in this way we'll get body if the browser is Chrome-ish, or documentElement otherwise
-    // fixes issue #65
     return parent
   }
   return getScrollParent(element.parentNode)
